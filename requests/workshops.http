@@ -1,0 +1,41 @@
+@baseUrl = http://localhost:8080
+
+### Register: 201 Created. Repeating this request returns 409 Conflict.
+POST {{baseUrl}}/api/v1/workshops
+Content-Type: application/json
+Accept-Language: es
+
+{
+  "managerFirstName": "Rodrigo",
+  "managerLastName": "Saavedra",
+  "contactPhone": "+51987654321",
+  "contactEmail": "rodrigo@example.com",
+  "workshopLegalName": "Daimler Lima SAC",
+  "city": "Lima",
+  "provinceOrState": "Lima",
+  "countryOrRegion": "Peru",
+  "maintenanceAuthCode": "Abc12345"
+}
+
+### Invalid email: 400, English message
+POST {{baseUrl}}/api/v1/workshops
+Content-Type: application/json
+Accept-Language: en
+
+{
+  "managerFirstName": "Ana",
+  "managerLastName": "Perez",
+  "contactPhone": "+51987654321",
+  "contactEmail": "invalid-email",
+  "workshopLegalName": "Daimler Norte SAC",
+  "city": "Trujillo",
+  "countryOrRegion": "Peru",
+  "maintenanceAuthCode": "Abc12345"
+}
+
+### Required fields: 400, Spanish messages
+POST {{baseUrl}}/api/v1/workshops
+Content-Type: application/json
+Accept-Language: es
+
+{}
